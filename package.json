@@ -1,6 +1,6 @@
 {
   "name": "contool",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Professional CLI base converter and bit inspector",
   "type": "module",
   "bin": {
@@ -13,14 +13,29 @@
   },
   "dependencies": {
     "chalk": "^5.3.0",
-    "commander": "^14.0.3"
+    "commander": "^14.0.3",
+    "mathjs": "^15.1.1"
   },
   "devDependencies": {
     "esbuild": "^0.27.4",
     "vitest": "^4.1.0"
   },
+  "files": [
+    ".gitignore",
+    "bin/",
+    "dist/",
+    "scripts/",
+    "src/",
+    "test/",
+    "README.md",
+    "package.json"
+  ],
   "keywords": [
     "cli","converter","binary","hex","octal","decimal","bigint","bitwise","calc"
   ],
-  "license": "MIT"
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/UyCode/contool.git"
+  }
 }
