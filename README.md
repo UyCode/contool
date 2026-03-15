@@ -159,4 +159,4 @@ npm run build     # Build for distribution
 
 ## License
 
-MIT
+GPL-3.0
