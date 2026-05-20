@@ -3,8 +3,10 @@ import { convertBigInt } from "./bigint.js";
 import { convertFraction } from "./fraction.js";
 
 export function convert(value, toBase, fromBase) {
-  if (value.startsWith('-')) {
-    const num = BigInt(value);
+  const input = value.trim();
+  if (input.startsWith("-")) {
+    const base = fromBase || detectBase(input);
+    const num = -parseInteger(input.slice(1), base);
     if (toBase === 2 || toBase === 8 || toBase === 16) {
       // Two's complement, assume 32 bits
       const bits = 32;
@@ -15,8 +17,16 @@ export function convert(value, toBase, fromBase) {
       return num.toString(toBase);
     }
   }
-  const base = fromBase || detectBase(value);
-  if (value.includes(".")) return convertFraction(parseFloat(value), toBase);
-  const clean = value.replace(/^0[xob]/,"");
+  const base = fromBase || detectBase(input);
+  if (input.includes(".")) return convertFraction(parseFloat(input), toBase);
+  const clean = stripBasePrefix(input);
   return convertBigInt(clean, base, toBase);
+}
+
+function parseInteger(value, base) {
+  return BigInt(convertBigInt(stripBasePrefix(value), base, 10));
+}
+
+function stripBasePrefix(value) {
+  return value.replace(/^0[xob]/i, "");
 }

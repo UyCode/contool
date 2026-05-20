@@ -8,7 +8,7 @@ Professional CLI base converter and bit inspector with BigInt support, bitwise c
 - **BigInt Support**: Handle arbitrarily large integers
 - **Fraction Support**: Convert floating-point numbers
 - **Negative Numbers**: 32-bit two's complement representation for binary/hex/octal
-- **Auto-Detection**: Automatically detect input base from format
+- **Auto-Detection**: Detect prefixed values and hex-letter values; plain numeric values default to decimal
 - **Bit Inspector**: View decimal, binary, and byte-grouped representations
 - **Bitwise Calculator**: Evaluate expressions with base prefixes (0x, 0b, 0o)
 - **Interactive REPL**: Explore conversions interactively
@@ -147,7 +147,7 @@ contool 0.5 --to bin
 
 # Complex expressions
 contool calc "(0xff << 8) | 0x42"
-# Output: 65314
+# Output: 65346
 ```
 
 ## Development

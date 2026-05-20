@@ -11,7 +11,7 @@ export function runCLI() {
   const program = new Command();
 
   program
-    .argument("[value]")
+    .argument("[args...]")
     .option("--from <base>")
     .option("--to <base>")
     .option("-a, --all")
@@ -20,15 +20,16 @@ export function runCLI() {
     .parse();
 
   const opts = program.opts();
-  const value = program.args[0];
+  const args = program.args;
+  const value = args[0];
 
   if (opts.interactive) {
     startRepl();
     return;
   }
 
-  if (program.args[0] === "calc") {
-    evaluateExpression(program.args.slice(1).join(" "));
+  if (value === "calc") {
+    evaluateExpression(args.slice(1).join(" "));
     return;
   }
 
@@ -36,17 +37,17 @@ export function runCLI() {
   const fromBase = parseBase(opts.from);
 
   if (!value) {
-    streamConvert(toBase);
+    streamConvert(toBase, fromBase);
     return;
   }
 
   if (opts.all) {
-    printTable(value);
+    printTable(value, fromBase);
     return;
   }
 
   if (opts.bits) {
-    inspectBits(value);
+    inspectBits(value, fromBase);
     return;
   }
 
@@ -55,6 +56,7 @@ export function runCLI() {
 
 function parseBase(v) {
   if (!v) return;
+  if (/^\d+$/.test(v)) return Number(v);
   const map = { bin:2, binary:2, oct:8, octal:8, dec:10, decimal:10, hex:16 };
-  return map[v];
+  return map[v.toLowerCase()];
 }
