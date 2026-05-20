@@ -1,6 +1,6 @@
 {
   "name": "contool",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Professional CLI base converter and bit inspector",
   "type": "module",
   "bin": {
@@ -30,7 +30,15 @@
     "package.json"
   ],
   "keywords": [
-    "cli","converter","binary","hex","octal","decimal","bigint","bitwise","calc"
+    "cli",
+    "converter",
+    "binary",
+    "hex",
+    "octal",
+    "decimal",
+    "bigint",
+    "bitwise",
+    "calc"
   ],
   "license": "GPL-3.0",
   "repository": {
